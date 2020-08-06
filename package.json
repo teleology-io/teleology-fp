@@ -1,6 +1,6 @@
 {
   "name": "@teleology/fp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A small collection of functional programming utils",
   "repository": "git@github.com:icarus-sullivan/teleology-fp.git",
   "author": "Chris Sullivan <chrissullivan.dev@gmail.com>",

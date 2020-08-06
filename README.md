@@ -88,7 +88,7 @@ Curry a dot notation path and default value, returns an invocable function requi
 
 Example:
 ```javascript
-const { toss } = require('@teleology/fp');
+const { pick } = require('@teleology/fp');
 
 pick('[0].a.b')([
   {
