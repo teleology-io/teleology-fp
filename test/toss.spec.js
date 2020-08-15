@@ -1,10 +1,14 @@
 const { toss } = require('../src/toss');
 
 it('toss throws a generic message', () => {
-  expect(toss).toThrow('An unknown error occured');
+  expect(toss('An unknown error occured')).toThrow('An unknown error occured');
 });
 
 it('throws a curried message', () => {
-  const f = () => toss('custom message');
-  expect(f).toThrow('custom message');
+  try {
+    toss('custom message')({ code: 500 });
+  } catch (e) {
+    expect(e.message).toBe('custom message');
+    expect(e.code).toBe(500);
+  }
 });

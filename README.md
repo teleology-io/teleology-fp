@@ -73,11 +73,12 @@ Example:
 ```javascript
 const { toss } = require('@teleology/fp');
 
-toss('An error occured')({ code: 103, reason: 'Entity already exists' });
+toss('An error occured')({ code: 403, reason: 'Entity already exists' });
 // Error: An error occured
 //     ...
 //     at internal/main/run_main_module.js:17:47 {
-//   properties: { code: 103, reason: 'Entity already exists' }
+//   code: 403, 
+//   reason: 'Entity already exists'
 // }
 ```
 
@@ -157,9 +158,33 @@ find((a) => a.id === '1')([
 ```
 
 
+## clean
+
+Recursively removes empty values. An empty value is: `null, empty string, undefined, an empty array or object`.
+
+Example:
+```javascript
+const { clean } = require('@teleology/fp');
+
+clean({
+  a: null,
+  b: '',
+  c: undefined,
+  d: {},
+  e: [],
+  f: 'hello',
+
+  nested: { will: { be: { removed: {} } } },
+}); // { f: 'hello' }
+```
+
+
 ----
 
 ## Changelog 
+**1.0.4**
+- Adding a clean function to remove empty values
+
 **1.0.1**
 
 - Renaming broadcast to parallel
