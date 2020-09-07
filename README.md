@@ -179,9 +179,29 @@ clean({
 ```
 
 
+## nonce
+
+Wraps a function and prevents it from being called more than `n` times. Optional second params is the number of times, default is `once`.
+
+Example:
+```javascript
+const { nonce } = require('@teleology/fp');
+
+const log = nonce(console.log);
+
+log('hi'); // hi
+log('bonjour');
+```
+
+
+
 ----
 
 ## Changelog 
+
+**1.0.6**
+- Adding `once` function
+
 **1.0.4**
 - Adding a clean function to remove empty values
 
