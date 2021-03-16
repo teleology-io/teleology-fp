@@ -238,9 +238,26 @@ safe(10).then(console.log);
 // }
 ```
 
+## timeout
+Curries a given function, millis and ensures an error is thrown when a timeout occurs. 
+
+```javascript
+const { timeout } = require('@teleology/fp');
+
+const timed = timeout(
+  async () => new Promise((resolve) => setTimeout(resolve, 9000)), // long running task
+  200, // timeout
+);
+
+timed('hello').then(console.log).catch(console.log);
+```
+
 ----
 
 ## Changelog 
+
+**1.0.10**
+- Adding `timeout` function
 
 **1.0.9**
 - Adding `retry, settle` functions
