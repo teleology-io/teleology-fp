@@ -193,11 +193,58 @@ log('hi'); // hi
 log('bonjour');
 ```
 
+## retry
 
+Given a function that may throw, retry up to `n` times.
+
+Example:
+```javascript
+const { retry } = require('@teleology/fp');
+
+const greet = retry(async (name) => {
+  throw new Error(`${name}, failed to be greeted`);
+}, 3);
+
+greet('bob').catch(console.log); // e Error: bob, failed to be greeted
+```
+
+
+## settle
+Mimics the traditional `Promise.all` but wraps each promise to avoid a throw. Errors contain a reason, successes a value. If a single promise is passed in, the result is a curried promise whose result is wrapped.
+
+```javascript
+const { settle } = require('@teleology/fp');
+
+const ps = [0, 1, 2, 3, 4].map((a) => (async () => a)());
+
+settle(ps).then(console.log);
+// [
+//   { success: true, value: 0 },
+//   { success: true, value: 1 },
+//   { success: true, value: 2 },
+//   { success: true, value: 3 },
+//   { success: true, value: 4 },
+// ]
+
+const safe = settle(async (num) => {
+  throw new Error(`Failed, ${num}`);
+});
+
+safe(10).then(console.log);
+// {
+//   success: false,
+//   reason: Error: Failed, 10
+//   ...
+// }
+```
 
 ----
 
 ## Changelog 
+
+**1.0.9**
+- Adding `retry, settle` functions
+- Bug fixes for pipe + compose
 
 **1.0.6**
 - Adding `once` function
