@@ -1,4 +1,4 @@
-export const retry = (fn, max) => async (...args) => {
+export const retry = (fn, max = 3) => async (...args) => {
   for (let i = max - 1; i > -1; i -= 1) {
     try {
       // eslint-disable-next-line no-await-in-loop
