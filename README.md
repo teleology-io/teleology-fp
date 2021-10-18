@@ -252,9 +252,40 @@ const timed = timeout(
 timed('hello').then(console.log).catch(console.log);
 ```
 
+## poll
+A wrapper around a functon to long-poll at pre-defined intervals. Can be used with defaults or a custom rolloff function.
+
+```javascript
+const { poll } = require('@teleology/fp');
+
+const fn = async () => console.log('hello');
+
+const cancel = poll(fn); // calls fn every 200ms
+
+const cancel2 = poll(fn, 1000); // calls fn every 1000ms
+
+const linear = async (i) => new Promise((res) => setTimeout(res, i * 1000));
+
+const cancel3 = poll(fn, linear); // rolls off in a lineaer fashion
+```
+
+## noop
+A function that does nothing. 
+
+```javascript
+const { noop } = require('@teleology/fp');
+
+// I do nothing
+noop();
+```
+
+
 ----
 
 ## Changelog 
+
+**1.0.14**
+- Added `noop` function
 
 **1.0.10**
 - Adding `timeout` function
