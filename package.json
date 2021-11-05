@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/icarus-sullivan/teleology-fp.git"
+    "url": "git+https://github.com/teleology-io/teleology-fp.git"
   },
   "bugs": {
-    "url": "https://github.com/icarus-sullivan/teleology-lambda-api/issues"
+    "url": "https://github.com/teleology-io/teleology-lambda-api/issues"
   },
   "scripts": {
     "lint": "npx eslint src/",
