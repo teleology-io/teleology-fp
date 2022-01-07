@@ -309,6 +309,10 @@ noop();
 
 ## Changelog 
 
+**2.0.0**
+- Changed how `pick` operates, to migrate use `get` which is now exposed
+- Updated `clean` to remove empty array items
+
 **1.0.14**
 - Added `noop` function
 
