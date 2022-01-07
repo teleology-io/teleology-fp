@@ -83,21 +83,46 @@ toss('An error occured')({ code: 403, reason: 'Entity already exists' });
 ```
 
 
-## pick
+## get
 
 Curry a dot notation path and default value, returns an invocable function requiring a target object.
 
 Example:
 ```javascript
-const { pick } = require('@teleology/fp');
+const { get } = require('@teleology/fp');
 
-pick('[0].a.b')([
+get('[0].a.b')([
   {
     a: {
       b: 'hello',
     },
   },
 ]); // hello
+```
+
+## pick
+
+Curry an array of dot notation paths, with optional settings. Returns an invocable function requiring a target object.
+
+Example:
+```javascript
+const { pick } = require('@teleology/fp');
+
+pick(['a.b', 'a.c[0]', 'a.c[2]'])({
+  a: {
+    b: 'hi',
+    c: [1, 2, 3],
+  },
+}); // { a: { b: 'hi', c: [ 1, <1 empty item>, 3 ] } }
+
+
+// Clear out missing values
+pick(['a.b', 'a.c[0]', 'a.c[2]'], { clean: true })({
+  a: {
+    b: 'hi',
+    c: [1, 2, 3],
+  },
+}); // { a: { b: 'hi', c: [ 1, 3 ] } }
 ```
 
 

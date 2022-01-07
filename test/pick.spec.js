@@ -1,4 +1,4 @@
-const { pick } = require('../src/pick');
+const { pick, get } = require('../src/pick');
 
 const TEST_DATA = {
   a: {
@@ -8,16 +8,56 @@ const TEST_DATA = {
 
 const TEST_DEFAULT_VALUE = 'not_found';
 
-it('accurately picks the value', () => {
-  expect(pick('a.b[2]')(TEST_DATA)).toEqual('z');
+describe('get', () => {
+  it('accurately get the value', () => {
+    expect(get('a.b[2]')(TEST_DATA)).toEqual('z');
+  });
+
+  it('uses default if not found', () => {
+    expect(get('c[1]', TEST_DEFAULT_VALUE)(TEST_DATA)).toEqual(
+      TEST_DEFAULT_VALUE,
+    );
+  });
+
+  it('uses undefined if not found', () => {
+    expect(get('c[1]')(TEST_DATA)).not.toBeDefined();
+  });
 });
 
-it('uses default if not found', () => {
-  expect(pick('c[1]', TEST_DEFAULT_VALUE)(TEST_DATA)).toEqual(
-    TEST_DEFAULT_VALUE,
-  );
-});
+describe('pick', () => {
+  it('accurately pick the values', () => {
+    expect(pick(['a.b[0]', 'a.b[2]'])(TEST_DATA)).toEqual({
+      a: {
+        b: ['2', undefined, 'z'],
+      },
+    });
+  });
 
-it('uses undefined if not found', () => {
-  expect(pick('c[1]')(TEST_DATA)).not.toBeDefined();
+  it('handles array', () => {
+    expect(pick(['0', '2'])([{ foo: 'bar' }, 12, undefined])).toEqual([
+      { foo: 'bar' },
+      undefined,
+      undefined,
+    ]);
+  });
+
+  it('handles array - cleaned', () => {
+    expect(
+      pick(['0', '2'], { clean: true })([{ foo: 'bar' }, 12, undefined]),
+    ).toEqual([{ foo: 'bar' }]);
+  });
+
+  it('optional settings', () => {
+    expect(
+      pick(['a.b[0]', 'a.b[2]'], { clean: true })(TEST_DATA),
+    ).toMatchObject({
+      a: {
+        b: ['2', 'z'],
+      },
+    });
+  });
+
+  it('uses empty object if not found', () => {
+    expect(pick(['c[1]'])(TEST_DATA)).toEqual({});
+  });
 });
