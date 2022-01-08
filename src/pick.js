@@ -1,7 +1,7 @@
 import { dot } from './dot';
 import { clean } from './clean';
 
-export const get = (path, def) => (obj) => {
+export const get = (path, def = undefined) => (obj) => {
   try {
     return dot(path).reduce((a, b) => a[b], obj);
   } catch (e) {

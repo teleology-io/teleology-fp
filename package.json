@@ -1,6 +1,6 @@
 {
   "name": "@teleology/fp",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A small collection of functional programming utils",
   "author": "Chris Sullivan <chrissullivan.dev@gmail.com>",
   "license": "MIT",
@@ -38,8 +38,5 @@
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.2.2",
     "prettier": "^2.0.5"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }
