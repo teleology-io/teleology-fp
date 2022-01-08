@@ -144,6 +144,24 @@ map((a) => a.id)([
 ]); // [ '1', '2' ]
 ```
 
+## curry
+
+Curry a specific function with a known [arity](https://en.wikipedia.org/wiki/Arity). Please note, optional arguments are not considered during invocation unless they are explicity set.
+
+Example:
+```javascript
+const { curry } = require('@teleology/fp');
+
+const test = (a, b, c) => console.log([a, b, c]);
+
+const curried = curry(3, test);
+
+// allows for flexibility
+curried(1, 2, 3); // [1, 2, 3]
+curried(1)(2)(3); // [1, 2, 3]
+curried(1)(2, 3); // [1, 2, 3]
+curried(1, 2)(3); // [1, 2, 3]
+```
 
 ## filter
 
@@ -308,6 +326,9 @@ noop();
 ----
 
 ## Changelog 
+
+**2.0.2**
+- Added `curry` function
 
 **2.0.0**
 - Changed how `pick` operates, to migrate use `get` which is now exposed
