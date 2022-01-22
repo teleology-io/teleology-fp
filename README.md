@@ -125,25 +125,6 @@ pick(['a.b', 'a.c[0]', 'a.c[2]'], { clean: true })({
 }); // { a: { b: 'hi', c: [ 1, 3 ] } }
 ```
 
-
-## map
-
-A curried map function to be invoked within an Array.
-
-Example:
-```javascript
-const { map } = require('@teleology/fp');
-
-map((a) => a.id)([
-  {
-    id: '1',
-  },
-  {
-    id: '2',
-  },
-]); // [ '1', '2' ]
-```
-
 ## curry
 
 Curry a specific function with a known [arity](https://en.wikipedia.org/wiki/Arity). Please note, optional arguments are not considered during invocation unless they are explicity set.
@@ -163,6 +144,35 @@ curried(1)(2, 3); // [1, 2, 3]
 curried(1, 2)(3); // [1, 2, 3]
 ```
 
+## map
+
+A curried map function to be invoked within an Array.
+
+Example:
+```javascript
+const { map } = require('@teleology/fp');
+
+map((a) => a.id)([
+  {
+    id: '1',
+  },
+  {
+    id: '2',
+  },
+]); // [ '1', '2' ]
+
+map(['id'])([
+  {
+    id: '1',
+    name: 'bob',
+  },
+  {
+    id: '2',
+    name: 'chris',
+  },
+]) // [ { id: '1' }, { id: '2' } ]
+```
+
 ## filter
 
 A curried filter function to be invoked within an Array. 
@@ -172,6 +182,15 @@ Example:
 const { filter } = require('@teleology/fp');
 
 filter((a) => a.id === '1')([
+  {
+    id: '1',
+  },
+  {
+    id: '2',
+  },
+]); // [ { id: '1' } ]
+
+filter({ id: '1' })([
   {
     id: '1',
   },
@@ -198,6 +217,42 @@ find((a) => a.id === '1')([
     id: '2',
   },
 ]); // { id: '1' }
+
+find({ id: '1' })([
+  {
+    id: '1',
+  },
+  {
+    id: '2',
+  },
+]); // { id: '1' }
+```
+
+## some
+
+A curried some function to be invoked within an Array. 
+
+Example:
+```javascript
+const { some } = require('@teleology/fp');
+
+some((a) => a.id === '1')([
+  {
+    id: '1',
+  },
+  {
+    id: '2',
+  },
+]); // true
+
+some({ id: '1' })([
+  {
+    id: '1',
+  },
+  {
+    id: '2',
+  },
+]); // true
 ```
 
 
