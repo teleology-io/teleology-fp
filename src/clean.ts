@@ -1,6 +1,6 @@
-const is = (arg) => Object.prototype.toString.call(arg).slice(8, -1);
+const is = (arg: any) => Object.prototype.toString.call(arg).slice(8, -1);
 
-export const empty = (v) => {
+export const empty = (v: any) => {
   const t = is(v);
 
   return (
@@ -12,7 +12,7 @@ export const empty = (v) => {
   );
 };
 
-const coerce = (v) => {
+const coerce = (v: any) => {
   if (Array.isArray(v)) {
     return v.filter((it) => !empty(it));
   }
@@ -21,5 +21,5 @@ const coerce = (v) => {
 };
 
 // Remove all undefined, null, empty strings, empty object and empty array values
-export const clean = (src) =>
+export const clean = (src: any) =>
   JSON.parse(JSON.stringify(src), (k, v) => (empty(v) ? undefined : coerce(v)));

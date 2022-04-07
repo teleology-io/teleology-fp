@@ -1,4 +1,4 @@
-const { find } = require('../src/find');
+const { find } = require('../lib/find');
 
 const data = [
   {

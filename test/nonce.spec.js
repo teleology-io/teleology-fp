@@ -1,4 +1,4 @@
-const { once } = require('../src/nonce');
+const { once } = require('../lib/nonce');
 
 it('only calls one time', () => {
   const test = jest.fn();

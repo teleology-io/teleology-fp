@@ -1,4 +1,4 @@
-const { toss } = require('../src/toss');
+const { toss } = require('../lib/toss');
 
 it('toss throws a generic message', () => {
   expect(toss('An unknown error occured')).toThrow('An unknown error occured');

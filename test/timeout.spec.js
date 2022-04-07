@@ -1,4 +1,4 @@
-const { timeout, sleep } = require('../src/timeout');
+const { timeout, sleep } = require('../lib/timeout');
 
 it('times out correctly', async () => {
   const sleeper = async () => sleep(300, 'fake');

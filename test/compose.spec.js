@@ -1,4 +1,4 @@
-const { compose } = require('../src/compose');
+const { compose } = require('../lib/compose');
 
 it('composes from one function to another', async () => {
   const func1 = () => 3;

@@ -1,15 +1,20 @@
 import { dot } from './dot';
 import { clean } from './clean';
+import { Iterable } from './types';
 
-export const get = (path, def = undefined) => (obj) => {
+export const get = (path: string, def?: any) => (obj: Iterable) => {
   try {
-    return dot(path).reduce((a, b) => a[b], obj);
+    return dot(path).reduce((a: any, b: any) => a[b], obj);
   } catch (e) {
     return def;
   }
 };
 
-export const pick = (paths, options = {}) => (src) => {
+export type PickOptions = {
+  clean: boolean
+}
+
+export const pick = (paths: string[], options?: PickOptions) => (src: Iterable) => {
   const output = Array.isArray(src) ? [] : {};
 
   for (let j = 0; j < paths.length; j++) {
@@ -22,7 +27,7 @@ export const pick = (paths, options = {}) => (src) => {
       continue;
     }
 
-    let target = output;
+    let target: Iterable = output;
 
     for (let i = 0; i < path.length; i++) {
       const part = path[i];
@@ -51,7 +56,7 @@ export const pick = (paths, options = {}) => (src) => {
     target[last] = value;
   }
 
-  if (options.clean) {
+  if (options && options.clean) {
     return clean(output);
   }
 

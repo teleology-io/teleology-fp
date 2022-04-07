@@ -1,4 +1,4 @@
-const { curry } = require('../src/curry');
+const { curry } = require('../lib/curry');
 
 it('stores curried values', () => {
   curry(3, (a, b, c) => {

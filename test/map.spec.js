@@ -1,4 +1,4 @@
-const { map } = require('../src/map');
+const { map } = require('../lib/map');
 
 it('maps using built-in pick', () => {
   const res = map(['name'])([

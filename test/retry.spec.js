@@ -1,4 +1,4 @@
-const { retry, retrySync } = require('../src/retry');
+const { retry, retrySync } = require('../lib/retry');
 
 it('retries async functions 3 times', async () => {
   const func1 = jest.fn(async () => {
@@ -34,7 +34,7 @@ it('retries sync functions 3 times', async () => {
   }
 });
 
-it('success after first async', async () => {
+it('success after first retry - async', async () => {
   let i = 0;
   const func1 = jest.fn(async () => {
     if (i === 1) return 'sure';
@@ -48,7 +48,7 @@ it('success after first async', async () => {
   expect(result).toEqual('sure');
 });
 
-it('success after second sync', async () => {
+it('success after second retry - sync', async () => {
   let i = 0;
   const func1 = jest.fn(() => {
     if (i > 1) return 'blue';

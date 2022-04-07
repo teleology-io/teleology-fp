@@ -1,6 +1,7 @@
-const { get } = require('./pick');
+import { get } from './pick';
+import { Iterable } from './types';
 
-export const objecToEquality = (obj) => (src) => {
+export const objecToEquality = (obj: Iterable) => (src: any) => {
   const keys = Object.keys(obj);
   for (const key of keys) {
     if (get(key)(src) !== obj[key]) {

@@ -1,4 +1,4 @@
-const { pick, get } = require('../src/pick');
+const { pick, get } = require('../lib/pick');
 
 const TEST_DATA = {
   a: {

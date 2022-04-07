@@ -1,4 +1,6 @@
-export const curry = (arity = 0, fn) => (...args) => {
+import { Chainable } from "./types";
+
+export const curry = (arity = 0, fn: Chainable) => (...args: any[]) => {
   // we have surpassed the expected arity, so invoke the final function
   if (arity <= args.length) {
     return fn(...args);

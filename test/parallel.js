@@ -1,4 +1,4 @@
-const { parallel } = require('../src/parallel');
+const { parallel } = require('../lib/parallel');
 
 it('emits to all listeners', async () => {
   const a = jest.fn();

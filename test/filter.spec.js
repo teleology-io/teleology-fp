@@ -1,4 +1,4 @@
-const { filter } = require('../src/filter');
+const { filter } = require('../lib/filter');
 
 const data = [
   {

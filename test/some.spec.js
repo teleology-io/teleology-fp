@@ -1,4 +1,4 @@
-const { some } = require('../src/some');
+const { some } = require('../lib/some');
 
 const data = [
   {

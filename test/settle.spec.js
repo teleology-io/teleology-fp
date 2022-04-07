@@ -1,4 +1,4 @@
-const { settle } = require('../src/settle');
+const { settle } = require('../lib/settle');
 
 it('settles an error promise', async () => {
   const caller = settle(async () => {

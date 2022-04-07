@@ -1,10 +1,11 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable camelcase */
 import { sleep } from './timeout';
+import { AsyncFunction } from './types';
 
 const DEFAULT_ROLLOFF = async (ms = 200) => sleep(ms);
 
-export const poll = (fn, it) => {
+export const poll = (fn: AsyncFunction, it?: Function | number) => {
   let rolloff;
   if (typeof it === 'function') {
     rolloff = it;

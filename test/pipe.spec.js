@@ -1,4 +1,4 @@
-const { pipe } = require('../src/pipe');
+const { pipe } = require('../lib/pipe');
 
 it('pipes from one function to another', async () => {
   const func1 = () => 3;

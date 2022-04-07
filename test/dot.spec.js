@@ -1,4 +1,4 @@
-const { dot } = require('../src/dot');
+const { dot } = require('../lib/dot');
 
 it('parses paths correctly', () => {
   expect(dot('[0].1.a.c')).toEqual(['0', '1', 'a', 'c']);

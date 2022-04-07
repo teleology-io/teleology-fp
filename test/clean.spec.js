@@ -1,4 +1,4 @@
-const { clean } = require('../src/clean');
+const { clean } = require('../lib/clean');
 
 it('removes empty values', async () => {
   const src = {

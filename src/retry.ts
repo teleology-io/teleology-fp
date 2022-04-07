@@ -1,9 +1,10 @@
 /* eslint-disable no-await-in-loop */
+import { AsyncFunction } from "./types";
 
-const DEFAULT_ROLLOFF = async () => {};
+const DEFAULT_ROLLOFF = async (retryCount: number) => {};
 
-export const retry = (fn, max = 3, rolloff = DEFAULT_ROLLOFF) => async (
-  ...args
+export const retry = (fn: AsyncFunction, max = 3, rolloff = DEFAULT_ROLLOFF) => async (
+  ...args: any[]
 ) => {
   for (let i = 0; i < max; i += 1) {
     try {
@@ -18,7 +19,7 @@ export const retry = (fn, max = 3, rolloff = DEFAULT_ROLLOFF) => async (
   }
 };
 
-export const retrySync = (fn, max = 3) => (...args) => {
+export const retrySync = (fn: Function, max = 3) => (...args: any[]) => {
   for (let i = max - 1; i > -1; i -= 1) {
     try {
       return fn(...args);

@@ -1,5 +1,5 @@
-const { poll } = require('../src/poll');
-const { sleep } = require('../src/timeout');
+const { poll } = require('../lib/poll');
+const { sleep } = require('../lib/timeout');
 
 it('Sleeps every 200 ms with no rolloff provided', async () => {
   const fn = jest.fn();
