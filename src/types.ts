@@ -1,6 +1,6 @@
 
 export type Iterable = {
-  [key: string | number]: any
+  [key: string | number | symbol]: any
 };
 
 export type Equalizer = (v: any, i: number) => boolean | Object;

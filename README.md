@@ -82,6 +82,17 @@ toss('An error occured')({ code: 403, reason: 'Entity already exists' });
 // }
 ```
 
+## set
+
+Sets a value at a dot notation path within an object or array, can be curried.
+
+Example:
+```javascript
+const { set } = require('@teleology/fp');
+
+set('a.b.c[1].z', 'hello')({})  // {"a":{"b":{"c":[null,{"z":"hello"}]}}}
+set('[0].z', 'hello', [])       // [ { z: 'hello' } ]
+```
 
 ## get
 
