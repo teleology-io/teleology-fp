@@ -2,9 +2,13 @@ import { dot } from './dot';
 import { clean } from './clean';
 import { Iterable } from './types';
 
-export const get = (path: string, def?: any) => (obj: Iterable) => {
+type CurriedGet = Iterable | ((src: Iterable) => Iterable)
+
+export const get = (path: string, def?: any, src?: Iterable): CurriedGet => {
+  if (!src) return (src: Iterable): Iterable => get(path, def, src)
+
   try {
-    return dot(path).reduce((a: any, b: any) => a[b], obj);
+    return dot(path).reduce((a: any, b: any) => a[b], src);
   } catch (e) {
     return def;
   }
@@ -20,7 +24,7 @@ export const pick = (paths: string[], options?: PickOptions) => (src: Iterable) 
   for (let j = 0; j < paths.length; j++) {
     const originalPath = paths[j];
     const path = dot(originalPath);
-    const value = get(originalPath)(src);
+    const value = get(originalPath, undefined, src);
 
     // don't try to find something that doesn't exist
     if (!path[0].match(/\d/g) && !src.hasOwnProperty(path[0])) {
