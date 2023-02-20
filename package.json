@@ -1,6 +1,6 @@
 {
   "name": "@teleology/fp",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "description": "A small collection of functional programming utils",
   "author": "Chris Sullivan <chrissullivan.dev@gmail.com>",
   "license": "MIT",
