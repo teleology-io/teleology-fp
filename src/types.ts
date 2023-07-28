@@ -5,6 +5,6 @@ export type Iterable = {
 
 export type Equalizer = (v: any, i: number) => boolean;
 
-export type AsyncFunction = (...any: any[]) => Promise<any>
+export type AsyncFunction = (...args: any) => Promise<any>
 
-export type Chainable = AsyncFunction | Function;
+export type Chainable = Promise<any> | AsyncFunction | Function | any
